@@ -40,9 +40,9 @@ def find_book(dataset, author, name_column):
         book_list = []
         for line in dataset:
             res = get_object(line, title)
-            if (res[NAME_COLUMN] == author) and (int(res[BOOK_YEAR]) < 2016):
+            if (res[NAME_COLUMN] == author) and ((int(res[BOOK_YEAR]) == 1991) or (int(res[BOOK_YEAR]) == 1996)):
                 book_list.append(res[name_column])
-        return book_list
+        return book_list if len(book_list) != 0 else "Oh, book's year is not 1991 or 1996 :("
 
 
 # third task
@@ -65,5 +65,5 @@ def library_gen(dataset):
 
 if __name__ == '__main__':
    print(book_count(FILE_NAME, BOOK_NAME_COLUMN))
-   print(find_book(FILE_NAME, 'Damien Simonis' ,BOOK_NAME_COLUMN))
+   print(find_book(FILE_NAME, "Carlo D'Este" ,BOOK_NAME_COLUMN))
    library_gen(FILE_NAME)
